@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <style>
+            .txt{
+                color: #000;
+                font-size: 100px;
+                padding-left: 15%;
+                padding-top: 7%;
+            }
+            body{
+                background-image: url(img.jfif);
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+            .t{
+                padding-left: 70px;
+            font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;    
+            }   
+            .img{
+                
+            }
+        </style>
+       
+    </head>
+    <body id="bd">
+        <a href="1.hmtl" style="text-decoration: none;">
+            <div class="txt">
+                Hey homie just remember:
+                <br>
+                <br>
+                <div class="t">
+                    You are Built Different
+                </div>
+               <div class="img">
+                <img src="3.jfif" height="500px"
+                width="700px">
+                </div>
+            </div>
+        </a>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2.0
+
+
+<html>
+    <head>
+        <style>
+            body{
+                background-image: url(img.jfif);
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+        </style>
+       <script>
+        var i=document.getElementById('i')
+         var i=0;
+        setInterval(function f(){
+           switch(i){
+            case 0:
+            i.src="1.jpg";
+            case 1:
+            i.src="2.jpg";
+           }
+           i++
+        },100)
+       </script>
+    </head>
+    <body>
+            <!-- <div class="img" style="padding-top: 40px;" id="pd"> -->
+                 <center>
+                    <img src="3.jpg" id="i">
+                 </center>
+            <!-- </div> -->
+    </body>
+</html>
