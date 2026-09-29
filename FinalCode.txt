@@ -1,0 +1,141 @@
+#Importing
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+
+df = pd.read_csv('cancer.csv')
+df.head(5)
+
+
+
+df.isnull()
+
+
+df=df.dropna()
+
+
+df.shape
+
+
+
+df['diagnosis'].value_counts()
+
+
+from sklearn.preprocessing import LabelEncoder
+labelencoder_Y = LabelEncoder()
+df.iloc[:,0] = labelencoder_Y.fit_transform(df.iloc[:,0].values)
+
+
+
+sns.pairplot(df.iloc[:,0:5], hue='diagnosis')
+
+
+
+#Actual Implementation
+#Split into data sets of independent(X) and dependent(Y) data sets
+x = df.iloc[:,1:31].values  #features
+y = df.iloc[:,0].values    #cancer or not
+
+
+
+
+
+#Scale data(features)
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+x_train = sc.fit_transform(x_train)
+x_test = sc.fit_transform(x_test)
+
+
+
+#function for the model
+#Logistic regresion
+def models1(x_train, y_train):
+  from sklearn.linear_model import LogisticRegression
+  log = LogisticRegression(random_state=0)
+  log.fit(x_train, y_train)
+
+  return log
+
+
+# Desicion Tree
+def models2(x_train,y_train):
+  from sklearn.tree import DecisionTreeClassifier
+  tree = DecisionTreeClassifier(criterion='entropy',random_state=0)
+  tree.fit(x_train, y_train)
+
+  print('Decision Tree Accuracy:',tree.score(x_train,y_train))
+
+  return tree
+
+
+# Desicion Tree
+def models3(x_train,y_train):
+  from sklearn.ensemble import RandomForestClassifier
+  forest = RandomForestClassifier(n_estimators= 10, criterion='entropy',random_state = 0)
+  forest.fit(x_train,y_train)
+
+  print('Random Forest Classifier:', forest.score(x_train,y_train))
+
+  return forest
+
+
+
+
+
+model1 = models1(x_train, y_train)
+model2 = models2(x_train, y_train)
+model3 = models3(x_train, y_train)
+
+
+
+
+
+#Testing a model
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_test, model1.predict(x_test))
+
+TP = cm[0][0]
+TN = cm[1][1]
+FN = cm[1][0]
+FP = cm[0][1]
+
+print(cm)
+print("Testing Accuracy is ",(TP + TN)/(TP + TN + FP + FN))
+
+
+
+
+
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_test, model2.predict(x_test))
+
+TP = cm[0][0]
+TN = cm[1][1]
+FN = cm[1][0]
+FP = cm[0][1]
+
+print(cm)
+print("Testing Accuracy is ",(TP + TN)/(TP + TN + FP + FN))
+
+
+
+
+
+
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_test, model3.predict(x_test))
+
+TP = cm[0][0]
+TN = cm[1][1]
+FN = cm[1][0]
+FP = cm[0][1]
+
+print(cm)
+print("Testing Accuracy is ",(TP + TN)/(TP + TN + FP + FN))
+
+
+
